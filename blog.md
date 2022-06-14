@@ -2,6 +2,8 @@
 
 ## About Me
 
+I'm Jack, the student completing this serverless course. I'm excited to get started.
+
 ## The Premise
 
 ## Tools used
