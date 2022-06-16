@@ -13,6 +13,6 @@ module.exports = async function (context, req) {
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: cat_base64
+        body: {cat_base64}
     };
 }
