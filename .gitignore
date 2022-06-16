@@ -93,8 +93,7 @@ obj
 appsettings.json
 local.settings.json
 
-# local history vscode extension
-.history/
-
-# DS_Store
-.DS_Store
+# Azurite artifacts
+__blobstorage__
+__queuestorage__
+__azurite_db*__.json
