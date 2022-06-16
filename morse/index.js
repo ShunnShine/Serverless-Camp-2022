@@ -9,7 +9,7 @@ module.exports = async function (context, req) {
         code = morse.textToMorse(plaintext);
     }
     else {
-        code = "Please enter some text to  convert!";
+        code = "Please enter some text to convert!";
     }
 
     context.res = {
