@@ -11,7 +11,7 @@ module.exports = async function (context, req) {
         body: {
             cat1: cat1_64,
             cat2: cat2_64,
-            name : TwoNames()
+            names : TwoNames()
         }
     };
 }
