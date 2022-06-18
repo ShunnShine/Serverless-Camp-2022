@@ -22,9 +22,16 @@ module.exports = async function (context, req) {
             main_emo_return = key
         }   
     }
+    
+    const gif_promise = await fetch(process.env.GIPHY_ENDPOINT + "?" +
+    `api_key=${process.env.GIPHY_KEY}&` +
+    `s=${main_emo_return}&`+
+    "weirdness=5", {method:"GET"})
+
+    const gif = await gif_promise.json();
 
     context.res = {
-        body: main_emo_return
+        body: gif.data.url
     }
 }
 
