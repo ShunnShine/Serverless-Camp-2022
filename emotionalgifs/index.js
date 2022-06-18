@@ -13,8 +13,18 @@ module.exports = async function (context, req) {
     
     const result = await analyzeImage(parts[0].data);
 
+    let emotions = result[0].faceAttributes.emotion;
+    let main_emo_return;
+    let max = 0;
+    for(let key in emotions){
+        if (emotions[key] > max){
+            max = emotions[key]
+            main_emo_return = key
+        }   
+    }
+
     context.res = {
-        body: {result}
+        body: main_emo_return
     }
 }
 
@@ -28,6 +38,7 @@ async function analyzeImage(img){
         headers: { "Content-Type": "application/octet-stream",
                 "Ocp-Apim-Subscription-Key":subscriptionKey}
     })
-    const data = await result.json();
-    return data;
+    
+
+    return await result.json();
 }
