@@ -7,6 +7,7 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.10.0",
     "cypress": "^8.2.0",
     "morse-code-converter": "^1.0.2",
     "node-fetch": "^2.6.1",
