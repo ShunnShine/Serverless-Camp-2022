@@ -31,5 +31,5 @@ async function uploadFile(binaryFile, ext){
 
     const blobName = 'test.' + ext;    // Create the container
     const blockBlobClient = containerClient.getBlockBlobClient(blobName); // Get a block blob client
-    await blockBlobClient.upload(binaryFile[0].data, binaryFile[0].data.length);
+    await blockBlobClient.upload(binaryFile, binaryFile.length);
 }
