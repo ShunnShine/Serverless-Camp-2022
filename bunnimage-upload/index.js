@@ -1,13 +1,35 @@
-module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
+const multipart = require('parse-multipart')
+const {BlobServiceClient} = require('@azure/storage-blob')
 
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+module.exports = async function (context, req) {
+    const boundary = multipart.getBoundary(req.headers['content-type']);
+    const body = req.body;
+    const parsedBody = multipart.Parse(body, boundary);
+    let ext = '';
+    switch (parsedBody[0].type){
+        case "image/png":
+            ext = "png";
+            break;
+        case 'image/jpeg':
+            ext = 'jpeg';
+            break;
+        case 'image/jpg':
+            ext = 'jpg'
+            break;
+    }
+    await uploadFile(parsedBody[0].data, ext)
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: responseMessage
+        body: "Success...Probably"
     };
+}
+
+async function uploadFile(binaryFile, ext){
+    const blobServiceClient = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE_CONNECTION_STRING);
+    const containerClient = blobServiceClient.getContainerClient("images");
+
+    const blobName = 'test.' + ext;    // Create the container
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName); // Get a block blob client
+    await blockBlobClient.upload(binaryFile, binaryFile.length);
 }
