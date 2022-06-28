@@ -13,6 +13,13 @@ async function uploadFile(binaryFile, ext, fileName) {
 }
 
 module.exports = async function (context, req) {
+    const fileName = req.headers.codename;
+    let result = '';
+    if (!fileName) {
+        context.res = { body: 'Sorry! No image attached.' };
+        return;
+    }
+
     const boundary = multipart.getBoundary(req.headers['content-type']);
     const { body } = req;
     const parsedBody = multipart.Parse(body, boundary);
@@ -30,16 +37,7 @@ module.exports = async function (context, req) {
     default:
         // do nothing
     }
-
-    const fileName = req.headers.codename;
-    let result = '';
-    if (fileName) {
-        result = await uploadFile(parsedBody[0].data, ext, fileName);
-    } else {
-        context.res = { body: 'Sorry! No image attached.' };
-        return;
-    }
-
+    result = await uploadFile(parsedBody[0].data, ext, fileName);
     context.res = {
     // status: 200, /* Defaults to 200 */
         body: result,
