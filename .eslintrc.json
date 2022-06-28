@@ -13,6 +13,7 @@
     "rules": {
         "indent": ["Error", 4],
         "linebreak-style":["off"],
-        "func-names":"off"
+        "func-names":"off",
+        "no-restricted-syntax":"off"
     }
 }

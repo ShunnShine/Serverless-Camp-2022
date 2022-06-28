@@ -29,10 +29,8 @@ module.exports = async function (context, req) {
         ext = 'png';
         break;
     case 'image/jpeg':
-        ext = 'jpeg';
-        break;
     case 'image/jpg':
-        ext = 'jpg';
+        ext = 'jpeg';
         break;
     default:
         // do nothing
