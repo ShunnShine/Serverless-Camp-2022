@@ -9,9 +9,9 @@
   <body>
       <div>
               <h1 id="h1">Give your code some love ❤️</h1>
-              <form id="bunnForm">
-                  <label>Code: </label>
-                  <input type="text" id="username" name="name" /><br>
+              <form id="bunnForm" enctype="multipart/form-data">
+                  <input type="file" accept="image/x-png,image/jpeg" name="image" id='fileUpload'/><br>
+                  <input type="text" id="filename" name="name" /><br>
                   <input value="Submit" type="submit" />
               </form>
               <br/>
