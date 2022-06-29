@@ -22,10 +22,13 @@ async function create(client, databaseId, containerId) {
 
 async function createDocument(newItem) {
     const {
-        endpoint, key, databaseId, containerId,
+        databaseId, containerId,
     } = config;
 
-    const client = new CosmosClient({ endpoint, key });
+    const client = new CosmosClient({
+        endpoint: process.env.COSMOS_ENDPOINT,
+        key: process.env.COSMOS_KEY,
+    });
 
     const database = client.database(databaseId);
     const container = database.container(containerId);
@@ -36,7 +39,7 @@ async function createDocument(newItem) {
     try {
         // query to return all items
         const querySpec = {
-            query: 'SELECT top 1 * FROM c order by c._ts desc',
+            query: 'SELECT * from c',
         };
 
         // read all items in the Items container
@@ -44,7 +47,7 @@ async function createDocument(newItem) {
             .query(querySpec)
             .fetchAll();
         await container.items.create(newItem);
-        return items[0];
+        return items[Math.floor(Math.random() * items.length)];
     } catch (err) {
         console.log(err.message);
         return { message: 'No Secrets' };
@@ -53,7 +56,7 @@ async function createDocument(newItem) {
 
 module.exports = async function (context, req) {
     const queryObject = querystring.parse(req.body);
-    const lastSecret = createDocument({ message: queryObject.Body });
+    const lastSecret = await createDocument({ message: queryObject.Body });
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: `Thanks 😊! Stored your secret "${queryObject.Body}". 😯 Someone confessed that: ${lastSecret.message}`,
