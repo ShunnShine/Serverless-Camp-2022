@@ -14,6 +14,7 @@
         "indent": ["Error", 4],
         "linebreak-style":["off"],
         "func-names":"off",
-        "no-restricted-syntax":"off"
+        "no-restricted-syntax":"off",
+        "browser": true
     }
 }
