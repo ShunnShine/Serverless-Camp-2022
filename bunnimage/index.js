@@ -1,6 +1,4 @@
-const bunnForm = document.getElementById('bunnForm');
-
-bunnForm.addEventListener('submit', (event) => {
+bunnForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const fileUpload = document.getElementById('fileUpload');
     if (!/^.*\.(png|jpg|jpeg)$/.test(fileUpload.value)) {
@@ -14,5 +12,20 @@ bunnForm.addEventListener('submit', (event) => {
         return;
     }
 
-    document.getElementById('output').textContent = 'Thanks!';
+    try {
+        const payload = new FormData();
+        const file = fileUpload.files[0]; // fileInput is the file upload input element
+        payload.append("file", file);
+        
+        const response = fetch('https://serverless-camp.azurewebsites.net/api/bunnimage-upload?code=-TbWWi7m-D8CzAEOJNEZZahKE83BJ3-nAAgKZ8wpQvHvAzFucAAc2Q==', {
+            method:'POST',
+            body: payload,
+            headers: {"codename": fileName.value},
+        })
+        .then( (response) => response.text())
+        .then( (text) => document.getElementById('output').textContent = 'Your image has been stored successfully!');
+    } catch (error) {
+        alert("File upload failed. Reason:" + error);
+        return;
+    }
 });
