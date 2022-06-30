@@ -29,3 +29,18 @@ bunnForm.addEventListener('submit', async (event) => {
         return;
     }
 });
+
+document.getElementById('button2').addEventListener('click', async (event) => {
+    var username = document.getElementById('downloadusername').value;
+    
+    const resp = await fetch('https://serverless-camp.azurewebsites.net/api/bunnimage-download?code=WQdFhhAOOZxZe-4XNLU70hEagu78tbN7_y0r5GGWR9aJAzFuRDVeNQ==', {
+        method:"GET",
+        headers:{
+            username: username
+        }
+    });
+    const data = await resp.json();
+
+    const link = data.downloadUri;
+    window.open(link, '_self');
+})
