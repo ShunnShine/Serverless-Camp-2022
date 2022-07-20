@@ -2,27 +2,51 @@
 
 ### Azure Services
 
-**Name of Service**
-- [replace with bullet list of what purpose(s) it serves for my project]
-- [include how it will interact with other components of your project listed above/below]
+**Cosmos Database**
+
+- store user information, so they can come back later or on a different device and pick up where they left off
+- azure functions will manage reading and writing with the database
+
+**Azure Functions**
+
+- provide data for the website
+- wrap and consolidate external api calls
+- wrap database access
+
+**Static Site Hosting**
+
+- host a static website
+- track github and build new changes
 
 ### APIs
 
-**Name of API**
-- [replace with bullet list of what purpose(s) it serves for my project]
-- [include how it will interact with other components of your project listed above/below]
+**IMDB**
+
+- Source of truth for movie information (titles, actors, images)
+- support for searching for movies
+
+**goodreads**
+
+- Source of truth for book information (titles, authors, images)
+- support for searching for books
+
+**spotify**
+
+- Source of truth for song information (tracks, artists, images, samples?)
+- support for searching for music
+- integration with account?
 
 ### Packages/Libraries/Databases
 
-**Name of Packages/Library/Database**
-- [replace with bullet list of what purpose(s) it serves for my project]
-- [include how it will interact with other components of your project listed above/below]
+**Bootstrap**
+
+- help with quickly styling the project
 
 ### Front-end Languages
 
-**Name of Language**
-- [replace with bullet list of what purpose(s) it serves for my project]
-- [include how it will interact with other components of your project listed above/below]
+**React Javascript**
+
+- react will help to make a static one page site that can react to data coming from api calls and the database
 
 ### Flowchart
 
