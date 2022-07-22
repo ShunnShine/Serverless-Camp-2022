@@ -51,4 +51,4 @@
 ### Flowchart
 
 - https://github.com/ShunnShine/Serverless-Camp-2022/blob/final-project/project/Flowchart.png
-- (I haven't had the chance to update my flow chart but I am using the figma page to set the style.) https://www.figma.com/file/HDqXbwSXLZdQqK0ma7VnEH/Collect-Shunn?node-id=0%3A1
+- 
